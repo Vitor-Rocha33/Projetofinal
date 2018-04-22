@@ -1,0 +1,282 @@
+Algoritmo "Projeto final"
+// Disciplina  :  [Linguagem e Lógica de Programação]
+// Professor   : Aldo Henrique
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Vítor Rocha Morais
+// CPD         : 41852
+// Data atual  : 19/04/2018
+// Turma       : 2/3° Semestre
+
+Var
+   opc,n1,adicao,sub,aux: inteiro
+   divi: real
+   //Variaveis parte 4
+   qntp,idade,soma,contador,qntsexo_F,qntsexo_M,somaidade_F,somaidadeM: inteiro
+   MEidade,MEsexoM,MEsexoF: real
+   sexo: caracter
+   //variaveis parte 5
+   somanumerosP,z,y: inteiro
+   //variaveis parte 6
+   n,VD,i,j,res,dec: inteiro
+   x,c : caracter
+   b: vetor [0..7] de inteiro
+
+Inicio
+   repita
+      Escreval ("                        ")
+      Escreval ("                        ")
+      Escreval ("ESCOLHA UMA OPÇÃO ABAIXO")
+      Escreval ("1.Soma")
+      Escreval ("2.Subtraçao")
+      Escreval ("3.Divisão")
+      Escreval ("4.Faixa etaria")
+      Escreval ("5.Numeros Primos")
+      Escreval ("6.Mudança de base")
+      Escreval ("7.Sair")
+      Escreva  ("Opção:")
+      leia (opc)
+      limpatela
+      //zerar os valores da variavel
+      n1 <- 0
+      y <- 0
+
+      //soma
+      se (opc=1) entao
+
+         escreval ("**********************")
+         escreval ("******** SOMA ********")
+         escreval ("**********************")
+         escreval (" ")
+         escreva ("Digite um numero pra soma:")
+         leia    (n1)
+         adicao <- n1
+         escreva("Digite outro numero:")
+         leia (n1)
+         adicao <- n1+adicao
+         escreval ("O valor da operação é:", adicao)
+         escreval  (" ")
+      fimse
+
+      //subtração
+      se (opc=2) entao
+
+         escreval ("***************************")
+         escreval ("******** SUBTRAÇÃO ********")
+         escreval ("***************************")
+         escreval (" ")
+         escreva ("Digite um numero para subtração:")
+         leia (n1)
+         sub <- n1
+         escreva ("Digite outro numero:")
+         leia (n1)
+         sub <- sub - n1
+         escreva("O valor da operação é:", sub)
+         escreval (" ")
+      fimse
+
+      //Divisão
+      se (opc=3) entao
+
+         escreval ("*************************")
+         escreval ("******** DIVISÃO ********")
+         escreval ("*************************")
+         escreval (" ")
+         repita
+            escreva ("Digite um numero para divisão:")
+            leia (n1)
+            divi <- n1
+            Escreva ("Digite outro número:")
+            leia (n1)
+            se (n1=0) entao
+               escreval("Não se divide número por zero")
+               escreval("Tente novamente")
+            senao
+               divi <- divi / n1
+               escreva ("O valor da divisão é", divi)
+               escreval(" ")
+            fimse
+         ate (n1<>0)
+      fimse
+
+      //Faixa etaria
+      se (opc = 4) entao
+         //para zera todas variaveis quando o usuario escolher essa opção novamente
+         contador  <-1
+         qntsexo_F <-0
+         qntsexo_M <-0
+         soma <- 0
+         somaidade_F <- 0
+         somaidadeM <- 0
+         MEidade <- 0
+         MEsexoM <- 0
+         MEsexoF <- 0
+         sexo <- " "
+         escreval ("********************************")
+         escreval ("********* FAIXA ETÁRIA *********")
+         escreval ("********************************")
+         escreval (" ")
+         //entrada de dados
+         escreva ("Entre com a quantidade de pessoas:")
+         leia(qntp)
+
+         enquanto (contador <= qntp) faca
+            escreval("Entre com a idade da pessoa" ,contador, ": ")
+            leia (idade)
+            escreval ("Entre com o sexo da pessoa" ,contador, "(M)masculino,(F)feminino: ")
+            leia (sexo)
+            escreval (" ")
+
+            //Calcula a media do sexo masculino
+            se (sexo="m")ou(sexo="M") entao
+               //Aqui soma quantidade do sexo masculino para depois tirar a media
+               qntsexo_M <- qntsexo_M + 1
+               //Aqui se calcula a idade total do sexo feminino
+               somaidadeM <- idade + somaidadeM
+               //Aqui se calcula a media de idade do sexo feminino
+               MEsexoM <- somaidadeM / qntsexo_M
+            fimse
+
+            //Aqui se soma a idade total para depois tira  a media
+            soma <- soma + idade
+
+            //Calcula a media do sexo feminino
+            se (sexo="f")ou(sexo="F") entao
+               //Aqui soma quantidade do sexo feminino para depois tirar a media
+               qntsexo_F <- qntsexo_F + 1
+               //Aqui se calcula a idade total do sexo feminino
+               somaidade_F <- idade + somaidade_F
+               //Aqui se calcula a media de idade do sexo feminino
+               MEsexoF <- somaidade_F / qntsexo_F
+            fimse
+            contador <- contador + 1
+         fimenquanto
+         //Aqui se calcula a media de todas as idades
+         MEidade <- soma/qntp
+
+         escreval ("RESULTADOS:")
+         escreval ("A media das idades é", MEidade)
+         escreval ("A media de idade do sexo masculino é", MEsexoM)
+         escreval ("A media de idade do sexo feminino é", MEsexoF)
+         escreval (" ")
+      fimse
+
+      //Números Primos
+      se (opc=5) entao
+         contador <- 0
+         z <- 2
+         y <- 1
+         somanumerosP <- 0
+         escreval ("********************************")
+         escreval ("******** NÚMEROS PRIMOS ********")
+         escreval ("********************************")
+         escreval (" ")
+         escreva ("Entre com um número:")
+         leia (n1)
+         escreva ("Abaixo todos os números primos de 2 até", n1)
+         escreval(" ")
+         //repetição para mostrar todos os números primos ate o valor escolhido pelo usuario
+         enquanto (z <= n1) faca
+            //repetição para verificar todos os numeros ate n1
+            enquanto (y <= z) faca
+               se (z mod y)= 0 entao
+                  //contador para contar quantas divisoes exatas
+                  contador <- contador + 1
+               fimse
+               //adiciona +1 a y para testar se é divisivel por 2
+               y <- y + 1
+
+            fimenquanto
+            //se ele for divisivel somente 2 vezes ele mostrar o valor de x
+            se (contador = 2) entao
+               escreval (z)
+               //aqui ele soma o valor de x para mostrar soma dos numeros primos no final
+               somanumerosP <- somanumerosP + z
+            fimse
+            //incrementa o valor de x para testar o proximo numeros
+            z <- z + 1
+            //reinicia o valor do y e do contador para quando voltar no laço de repetição voltar valendo 1
+            y <- 1
+            contador <- 0
+
+         fimenquanto
+         escreva ("A soma dos numeros primos é" ,somanumerosP)
+         escreval(" ")
+      fimse
+
+      //Mudança de Base
+
+      se (opc=6) entao
+         escreval ("*********************************")
+         escreval ("******** MUDANÇA DE BASE ********")
+         escreval ("*********************************")
+         escreval (" ")
+         //entrada de dados
+         escreva("Entre com a quantidade de numeros para troca de base:")
+         leia (n)
+
+         escreval("A mudança de base sera feita (B) para binario ou (D) para decimal?")
+         leia (c)
+         escolha (c)
+
+         caso "b","B"
+            contador <- 1
+            enquanto (contador <= n) faca
+               escreval (" ")
+               escreval ("Digite o", contador, "° numero para transformar em binario:")
+               leia (y)
+               //calculo para que se o numero for de resto 0 entao se adiciona o caracter 0
+               enquanto y > 0 faca
+                  se (y mod 2)=0 entao
+                     x <- "0" + x
+                     //senao for de resto zero se acresenta o caracter 1
+                  senao
+                     x <- "1" + x
+                  fimse
+                  //operação para dividir o valor de y para fazer o processo novamente
+                  y <- y div 2
+
+               fimenquanto
+
+               escreval ("O valor em binário do" , contador, "° número é ", x)
+               escreval (" ")
+               contador <- contador + 1
+               //Aqui se zera a variavel x para que se for escolhido mais
+               //de um numero nao se sobreponha um resultado ao outro
+               x <- ""
+
+            fimenquanto
+
+         caso "d","D"
+            contador <- 1
+            //aqui so foi possivel fazer ele ler sempre 8 digitos entao sempre se completa com zeros(Ex:00001010)
+            escreva ("Digite 8 digitos, se o numero binario não tiver 8 digitos")
+            escreval (" complete com zeros")
+            //aqui é a condição para finalizar somente quando chegar a quantidade de mudança de base que o usuario solicitou
+            enquanto (contador <= n) faca
+               //condição para ler os 8 digitos por vez
+               para i de 7 ate 0 passo -1 faca
+                  escreval ("Digite o digito" ,8-i," do " ,contador, "° numero: ")
+                  leia (b[i])
+                  //calculo para saber o valor decimal
+                  se (b[i]=1) entao
+                     res <- 1
+                     para j de 1 ate i faca
+                        res <- res*2
+                     fimpara
+                     dec <- dec + b[i] * res
+                  fimse
+               fimpara
+
+               escreval ("O valor em decimal do seu " ,contador, "° número é: ", dec )
+               escreval (" ")
+               //contador para caso o usuario escolha converter mais de um numero
+               contador <- contador + 1
+            fimenquanto
+         fimescolha
+
+
+      fimse
+
+   ate (opc=7)
+
+Fimalgoritmo
